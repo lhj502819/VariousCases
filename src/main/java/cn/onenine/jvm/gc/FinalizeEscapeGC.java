@@ -1,4 +1,4 @@
-package cn.onenine.gc;
+package cn.onenine.jvm.gc;
 
 /**
  * 测试finalize方法

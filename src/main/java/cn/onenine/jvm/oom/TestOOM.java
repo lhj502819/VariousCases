@@ -1,4 +1,4 @@
-package cn.onenine.oom;
+package cn.onenine.jvm.oom;
 
 /**
  * TODO

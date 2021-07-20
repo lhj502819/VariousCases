@@ -1,4 +1,4 @@
-package cn.onenine.proxy;
+package cn.onenine.jvm.proxy;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
