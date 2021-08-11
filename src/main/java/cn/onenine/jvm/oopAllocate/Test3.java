@@ -3,6 +3,13 @@ package cn.onenine.jvm.oopAllocate;
 /**
  * 测试长期存活的对象会进入老年代
  *
+ * 对象每在Survivor区中每熬过一次Minor GC年龄就会增加1岁，当它的年龄增加到一定程度（默认为15），就会被晋升到老年代中。
+ *  晋升老年代的阈值可以通过-XX:MaxTenuringThreshold=15配置
+ *
+ * 但是年龄不是唯一晋升到老年代的条件，
+ *      如果Survivor空间中相同年龄所有对象大小的总和大于Survivor的一半，年龄大于或等于该年龄的对象就可以直接进入老年代
+ *
+ *
  * @author lihongjian
  * @since 2021/8/10
  */
@@ -45,12 +52,12 @@ public class Test3 {
     }
 
     public static void testTenuringThreshold() {
-        byte[] allocation1, allocation2, allocation3;
+        byte[] allocation1, allocation2, allocation3,allocation4;
         allocation1 = new byte[_1MB / 4]; // 什么时候进入老年代决定于XX:MaxTenuringThreshold设置
         allocation2 = new byte[4 * _1MB];
         allocation3 = new byte[4 * _1MB];
         allocation3 = null;
-        allocation3 = new byte[4 * _1MB];
+//        allocation4 = new byte[4 * _1MB];
     }
 
 }
