@@ -52,11 +52,20 @@ public class Test3 {
     }
 
     public static void testTenuringThreshold() {
-        byte[] allocation1, allocation2, allocation3,allocation4;
+        byte[] allocation1, allocation2, allocation3,allocation4,allocation5,allocation6,allocation7;
         allocation1 = new byte[_1MB / 4]; // 什么时候进入老年代决定于XX:MaxTenuringThreshold设置
         allocation2 = new byte[4 * _1MB];
         allocation3 = new byte[4 * _1MB];
+        allocation4 = new byte[4 * _1MB];
+        allocation5 = new byte[4 * _1MB];
+        allocation6 = new byte[4 * _1MB];
+        allocation7 = new byte[4 * _1MB];
         allocation3 = null;
+        try {
+            Thread.sleep(100000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 //        allocation4 = new byte[4 * _1MB];
     }
 
