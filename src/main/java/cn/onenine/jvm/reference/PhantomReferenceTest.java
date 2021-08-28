@@ -14,38 +14,39 @@ import java.lang.reflect.Field;
 public class PhantomReferenceTest {
     public static boolean isRun = true;
 
-    public static void main(String[] args) throws Throwable {
-        //创建150M的缓存数据
-        byte[] cacheData = new byte[1024 * 1024 * 100];
+    @SuppressWarnings("static-access")
+    public static void main(String[] args) throws Exception {
         String abc = new String("abc");
-        ReferenceQueue<String> referenceQueue = new ReferenceQueue<>();
-
-        new Thread(() -> {
-            while (isRun) {
-                Object obj = referenceQueue.poll();
-                if (obj != null) {
-                    try {
-                        Field rereferent = Reference.class
-                                .getDeclaredField("referent");
-                        rereferent.setAccessible(true);
-                        Object result = rereferent.get(obj);
-                        System.out.println("gc will collect："
-                                + result.getClass() + "@"
-                                + result.hashCode() + "\t"
-                                + (String) result);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+        System.out.println(abc.getClass() + "@" + abc.hashCode());
+        final ReferenceQueue<String> referenceQueue = new ReferenceQueue<String>();
+        new Thread() {
+            public void run() {
+                while (isRun) {
+                    Object obj = referenceQueue.poll();
+                    if (obj != null) {
+                        try {
+                            Field rereferent = Reference.class
+                                    .getDeclaredField("referent");
+                            rereferent.setAccessible(true);
+                            Object result = rereferent.get(obj);
+                            System.out.println("gc will collect："
+                                    + result.getClass() + "@"
+                                    + result.hashCode() + "\t"
+                                    + (String) result);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-
                 }
             }
-        }).start();
+        }.start();
         PhantomReference<String> abcWeakRef = new PhantomReference<String>(abc, referenceQueue);
         abc = null;
-        Thread.sleep(3000);
+        Thread.currentThread().sleep(3000);
         System.gc();
-        Thread.sleep(3000);
+        Thread.currentThread().sleep(3000);
         isRun = false;
-
     }
+
+
 }
