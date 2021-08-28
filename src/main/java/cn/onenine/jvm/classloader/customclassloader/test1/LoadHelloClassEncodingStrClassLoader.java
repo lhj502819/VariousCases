@@ -38,9 +38,6 @@ public class LoadHelloClassEncodingStrClassLoader {
 
     /**
      * 对指定Class文件进行Base64加密
-     *
-     * @return
-     * @throws Exception
      */
     private static String decodeHelloClass(String path) throws Exception {
         FileInputStream fileInputStream = new FileInputStream(path);
