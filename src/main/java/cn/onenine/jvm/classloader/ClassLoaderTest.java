@@ -12,9 +12,7 @@ import java.io.InputStream;
  * @since 2021/8/27
  */
 public class ClassLoaderTest {
-
-
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         ClassLoader classLoader = new ClassLoader() {
             @Override
             protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
