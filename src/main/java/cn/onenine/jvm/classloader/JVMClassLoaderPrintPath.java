@@ -8,7 +8,8 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
+/**     -Dsun.boot.class.path="E:\software\JDK\lib\rt.jar"
+ * java ‐Dsun.boot.class.path="E:\software\JDK\lib\rt.jar" 启动类
  * 打印类加载器加载了哪些类
  *
  * @author lihongjian
@@ -21,7 +22,6 @@ public class JVMClassLoaderPrintPath {
         System.out.println("启动类加载器");
 
         Arrays.stream(urLs).map(URL::toExternalForm).forEach(System.out::println);
-
 
         System.out.println("扩展类加载器");
 
