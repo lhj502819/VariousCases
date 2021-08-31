@@ -86,5 +86,25 @@ public class Hello {
             System.out.println("四则运算：num1 * num4 = " );
             System.out.println(num1 * num4);
         }
+
+        /**
+         * bipush   将单字节的常量值100(-128~127)推送至栈顶
+         *
+         * invokestatic  #62   // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer; 拆箱
+         *
+         * istore        7
+         *
+         */
+        Integer num5 = 100;
+
+        /**
+         *  bipush        101
+         *
+         *  istore        8
+         *  对比可看到少了一步拆箱,尽量使用int类型
+         */
+        int num6 = 101;
+
+        System.out.println(num5 + num6);
     }
 }
