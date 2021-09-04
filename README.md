@@ -10,8 +10,12 @@
 * [JDK动态代理Demo](https://github.com/lhj502819/VariousCases/tree/main/src/main/java/cn/onenine/jvm/dynamicproxy)
 * [finalize分析](https://github.com/lhj502819/VariousCases/blob/main/src/main/java/cn/onenine/jvm/gc/FinalizeEscapeGC.java)
   
-       个人博客：https://www.yuque.com/lihongjian/fx3n4r/qwlcnh
+       博客：https://www.yuque.com/lihongjian/fx3n4r/qwlcnh
 * [伪共享分析](https://github.com/lhj502819/VariousCases/blob/main/src/main/java/cn/onenine/jvm/gc/FalseSharingDemo.java)
 
       伪共享分析博客：https://www.yuque.com/lihongjian/fx3n4r/cnhs3h#RSAqI
 * [引用类型](https://github.com/lhj502819/VariousCases/tree/main/src/main/java/cn/onenine/jvm/reference)
+* [自定义插入式注解，校验代码命名格式](https://github.com/lhj502819/VariousCases/tree/main/src/main/java/cn/onenine/jvm/annotatiomprocesser)
+    * [测试案例](https://github.com/lhj502819/VariousCases/tree/main/CodeNameCheckTest)
+      1. 引用自定义插入式注解jar包，maven compile即可
+   
