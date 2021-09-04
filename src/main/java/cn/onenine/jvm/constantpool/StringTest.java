@@ -1,7 +1,7 @@
 package cn.onenine.jvm.constantpool;
 
 /**
- * Description：
+ * Description：测试String常量池
  *
  * @author li.hongjian
  * @email lhj502819@163.com

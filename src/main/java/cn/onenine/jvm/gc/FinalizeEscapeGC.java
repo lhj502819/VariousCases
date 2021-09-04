@@ -3,6 +3,10 @@ package cn.onenine.jvm.gc;
 /**
  * 测试finalize方法
  *
+ * 类重写了finalize()并在方法中将自身赋值给了类静态变量，
+ * 执行完等待虚拟机再次执行标记时，发现当前对象已经存在强引用了，那么就不会回收此对象了。
+ * 下边有两段相同的代码，但是第二次显示并没有执行finalize()方法，说明了finalize()方法在一个对象中只能被执行一次。
+ *
  * @author lihongjian
  * @since 2021/7/19
  */
