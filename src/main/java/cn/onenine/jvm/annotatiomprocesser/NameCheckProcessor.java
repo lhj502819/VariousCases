@@ -1,5 +1,7 @@
 package cn.onenine.jvm.annotatiomprocesser;
 
+import com.google.auto.service.AutoService;
+
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
@@ -9,10 +11,13 @@ import java.util.Set;
 /**
  * Description：命名规则检查校验处理器
  *
+ * 在maven项目中，需要将日志级别调整成ERROR级别，否则会被maven忽略掉
+ *
  * @author li.hongjian
  * @email lhj502819@163.com
  * @since 2021/9/3
  */
+@AutoService(Processor.class)
 //支持所有的注解类型
 @SupportedAnnotationTypes("*")
 //只支持JDK8的Java代码
