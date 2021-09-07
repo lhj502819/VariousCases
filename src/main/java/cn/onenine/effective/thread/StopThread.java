@@ -17,7 +17,7 @@ public class StopThread {
         Thread thread = new Thread(() -> {
             int i = 0;
             /**
-             * 由于JIT即使编译，将我们的成语优化为类似下边的语句，避免每次循环进行边界检查
+             * 主线程休眠1秒过程中，子线程不断执行循环，触发了JIT即使编译，将我们的成语优化为类似下边的语句，避免每次循环进行边界检查
              * if(!stopRequested){
              *     while(true){
              *      i++;
