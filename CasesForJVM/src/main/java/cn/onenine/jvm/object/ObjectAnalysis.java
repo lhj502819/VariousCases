@@ -39,6 +39,9 @@ public class ObjectAnalysis {
 
         Long num3 = 1L;
         System.out.println(ClassLayout.parseInstance(num3) .toPrintable());
+
+        Object[] objects = new Object[]{user};
+        System.out.println(ClassLayout.parseInstance(objects) .toPrintable());
     }
 }
 

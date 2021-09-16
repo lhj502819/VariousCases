@@ -1,6 +1,5 @@
 package cn.onenine.jvm.classloader;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
