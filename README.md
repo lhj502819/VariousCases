@@ -19,5 +19,5 @@
     * [测试案例](https://github.com/lhj502819/VariousCases/blob/main/CasesForJVM/CodeNameCheckTest)
       1. 引用自定义插入式注解jar包，maven compile即可
 
-## [JVM相关](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty)
+## [Netty相关](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty)
    
