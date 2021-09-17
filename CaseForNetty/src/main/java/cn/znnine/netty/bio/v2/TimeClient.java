@@ -1,4 +1,4 @@
-package cn.znnine.netty.bio;
+package cn.znnine.netty.bio.v2;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
- * 同步时I/O Client
+ * 伪异步I/O Client
  *
  * @author lihongjian
  * @since 2021/9/16
