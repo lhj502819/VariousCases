@@ -29,7 +29,7 @@
                     <encoding>UTF-8</encoding>
                     <annotationProcessors>
                         <annotationProcessor>
-                           cn.onenine.jvm.annotatiomprocesser.NameCheckProcessor
+                            cn.znnine.jvm.annotatiomprocesser.NameCheckProcessor
                         </annotationProcessor>
                         <!--<annotationProcessor>
                                 org.jvm.processor.lombok.DataProcessor
