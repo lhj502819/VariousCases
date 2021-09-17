@@ -20,4 +20,8 @@
       1. 引用自定义插入式注解jar包，maven compile即可
 
 ## [Netty相关](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty)
+
+* [BIO代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/bio/v1)
+
+* [伪异步I/O代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/bio/v1)
    
