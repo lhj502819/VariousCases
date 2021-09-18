@@ -5,6 +5,9 @@ import java.net.InetSocketAddress;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Description：Java NIO 使用Demo
@@ -15,6 +18,11 @@ import java.nio.channels.ServerSocketChannel;
  */
 public class BasicUseDemo {
 
+    /**
+     * Reactor
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception{
         int port = 8080;
         /**
@@ -33,7 +41,37 @@ public class BasicUseDemo {
         //创建Reactor线程，创建多路复用器并启动线程，示例代码如下
         Selector selector = Selector.open();
 //        new Thread(new ReactorTask()).start();
-        SelectionKey.OP_ACCEPT
+        //将ServerSocketChannel注册到Reactor线程的多路复用器Selector上，监听ACCEPT事件
+        SelectionKey key = acceptServer.register(selector, SelectionKey.OP_ACCEPT);
+        //多路复用器在线程run方法的无限循环体内轮询准备就绪的Key
+        int num = selector.select();
+        Set<SelectionKey> selectionKeys = selector.selectedKeys();
+        Iterator<SelectionKey> it = selectionKeys.iterator();
+        while (it.hasNext()){
+            SelectionKey selectionKey = it.next();
+            //deal with I/O event ...
+        }
+        //多路复用器监听到有新的客户端接入，处理新的接入请求，完成TCP三次握手，建立物理链路，示例代码如下
+        SocketChannel channel = acceptServer.accept();
+        //设置客户端链路为非阻塞模式
+        channel.configureBlocking(false);
+        channel.socket().setReuseAddress(true);
+        //将新接入的客户端连接注册到Reactor线程的多路复用器上，监听读操作，读取客户端发送的网格消息
+        SelectionKey selectionKey = channel.register(selector, SelectionKey.OP_READ);
+        //异步读取客户端请求消息到缓冲器
+//        int readNumber = channel.register(receivedBuffer);
+        //对ByteBuffer进行编解码，如果有半包消息指针reset，继续读取后续的报文，将解码成功的消息封装成Task，投递到业务线程中，进行业务逻辑编排
+        Object message = null;
+//        while (buffer.hasRemain()){
+//          //.....
+//        }
+        //将POJO对象encode成ByteBuffer，调用SocketChannel的异步write接口，将消息异步发送给客户端
+//        channel.write(buffer);
+
+
+        /**
+         * 注意：如果发送区TCP缓冲区满，会导致写半包，此时需要注册监听写操作位，循环写，直到整包消息写入TCP缓冲区。
+         */
 
     }
 }
