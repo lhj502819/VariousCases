@@ -33,7 +33,7 @@ public class BasicUseDemo {
          * Channel是一个接口，子类可以分为两大类：用于网络读写的SelectableChannel和用于文件操作的FileChannel
          * 下边的ServerSocketChannel和SocketChannel都是SelectableChannel的子类
          */
-        //1、打开ServerSocketChannel，用于监听客户端的连接，它是所有客户端连接的父管道
+        //1、打开ServerSocketChannel，用于监听客户端的连接，它是所有客户端连接的父管道，是SelectableChannel（负责网络读写）的子类
         ServerSocketChannel acceptServer = ServerSocketChannel.open();
         //2、绑定监听端口，设置连接为非阻塞模式
         acceptServer.socket().bind(new InetSocketAddress(InetAddress.getByName("IP"),port));
