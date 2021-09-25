@@ -96,6 +96,7 @@ public class TimeClientHandle implements Runnable {
             if(key.isConnectable()){
                 if(sc.finishConnect()){
                     sc.register(selector,SelectionKey.OP_READ);
+                    doWrite(sc);
                 }else {
                     System.exit(1);
                 }

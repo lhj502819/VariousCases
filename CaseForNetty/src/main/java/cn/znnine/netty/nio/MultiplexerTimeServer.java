@@ -51,35 +51,37 @@ public class MultiplexerTimeServer implements Runnable {
 
     @Override
     public void run() {
-        try {
-            selector.select(1000);
-            Set<SelectionKey> selectionKeys = selector.selectedKeys();
-            Iterator<SelectionKey> iterator = selectionKeys.iterator();
-            SelectionKey selectionKey = null;
-            while (iterator.hasNext()) {
-                selectionKey = iterator.next();
-                iterator.remove();
-                try {
-                    handleInput(selectionKey);
-                } catch (Exception e) {
-                    if (selectionKey != null) {
-                        selectionKey.cancel();
-                        if (selectionKey.channel() != null) {
-                            selectionKey.channel().close();
+        while (!stop) {
+            try {
+                selector.select(2000);
+                Set<SelectionKey> selectionKeys = selector.selectedKeys();
+                Iterator<SelectionKey> iterator = selectionKeys.iterator();
+                SelectionKey selectionKey = null;
+                while (iterator.hasNext()) {
+                    selectionKey = iterator.next();
+                    iterator.remove();
+                    try {
+                        handleInput(selectionKey);
+                    } catch (Exception e) {
+                        if (selectionKey != null) {
+                            selectionKey.cancel();
+                            if (selectionKey.channel() != null) {
+                                selectionKey.channel().close();
+                            }
                         }
                     }
                 }
+                //多路复用器关闭后，所有注册在上边的Channel和Pipe等资源都会被自动去注册并关闭，所以不需要重复释放资源
+//                if (selector != null) {
+//                    try {
+//                        selector.close();
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+            } catch (Exception e) {
+                log.error("#run", e);
             }
-            //多路复用器关闭后，所有注册在上边的Channel和Pipe等资源都会被自动去注册并关闭，所以不需要重复释放资源
-            if (selector != null) {
-                try {
-                    selector.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        } catch (Exception e) {
-            log.error("#run", e);
         }
     }
 
