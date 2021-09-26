@@ -33,4 +33,6 @@
 通信线程就可以处理其他链路，不需要同步等待这个链路可用
 3. 线程模型的优化：由于JDK的Selector在Linux等主流操作系统上通过epoll实现，没有连接句柄数的限制（只受限于操作系统的最大句柄数
    或者对单个进程的句柄限制），这意味着一个Selector线程可用同时处理成千上万个客户端连接，而且性能不会随着客户端的增加而线性下降。因此非常适合做高性能、高负载的网络服务器。
+
+* [Java AIO 代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/aio)
    
