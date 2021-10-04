@@ -7,7 +7,7 @@ package cn.znnine.netty.aio;
  * @since 2021/9/25
  */
 public class AIOTimeServer {
-    public static void main(String[] args) {
+    public static void   main(String[] args) {
         int port = 8080;
         if (args != null && args.length >0) {
             try {

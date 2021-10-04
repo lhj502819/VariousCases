@@ -1,25 +1,24 @@
-package cn.znnine.netty.nio;
+package cn.znnine.netty.nio.java;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Java NIO Server
+ * 伪异步I/O Client
  *
  * @author lihongjian
- * @since 2021/9/23
+ * @since 2021/9/16
  */
-public class TimeServer {
+@Slf4j
+public class TimeClient {
     public static void main(String[] args) {
         int port = 8080;
-        if (args != null && args.length >0) {
+        if (args != null && args.length > 0) {
             try {
                 port = Integer.parseInt(args[0]);
             } catch (NumberFormatException e) {
                 //None  采用默认值
             }
         }
-        MultiplexerTimeServer timeServer = new MultiplexerTimeServer(port);
-
-        new Thread(timeServer,"NIO-MutiplexerTimeServer").start();
-
-
+        new Thread(new TimeClientHandle("127.0.0.1" , port) , "TimeClientHandle-001").start();
     }
 }

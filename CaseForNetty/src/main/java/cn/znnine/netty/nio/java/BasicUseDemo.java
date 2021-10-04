@@ -1,4 +1,4 @@
-package cn.znnine.netty.nio;
+package cn.znnine.netty.nio.java;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
