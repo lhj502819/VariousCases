@@ -43,7 +43,7 @@ public class TimeServer {
             //使用sync()方法进行阻塞，等待服务端链路关闭后main函数才退出
             f.channel().closeFuture().sync();
         } finally {
-            //优雅退出，释放线程池资源（会释放和shutdownGracefully相关联的资源）
+            //优雅退出，释放x线程池资源（会释放和shutdownGracefully相关联的资源）
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }
@@ -57,7 +57,7 @@ public class TimeServer {
 
         @Override
         protected void initChannel(SocketChannel ch) throws Exception {
-            ch.pipeline().addLast(new TimeServerHandler());
+            ch.pipeline().addLast(new TimeServerHandle());
         }
     }
 
