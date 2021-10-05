@@ -6,7 +6,7 @@ package cn.znnine.netty.nio.java;
  * @author lihongjian
  * @since 2021/9/23
  */
-public class TimeServer {
+public class JavaTimeServer {
     public static void main(String[] args) {
         int port = 8080;
         if (args != null && args.length >0) {

@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  * @since 2021/9/16
  */
 @Slf4j
-public class TimeClient {
+public class JavaTimeClient {
     public static void main(String[] args) {
         int port = 8080;
         if (args != null && args.length > 0) {
@@ -19,6 +19,6 @@ public class TimeClient {
                 //None  采用默认值
             }
         }
-        new Thread(new TimeClientHandle("127.0.0.1" , port) , "TimeClientHandle-001").start();
+        new Thread(new JavaTimeClientHandle("127.0.0.1" , port) , "TimeClientHandle-001").start();
     }
 }

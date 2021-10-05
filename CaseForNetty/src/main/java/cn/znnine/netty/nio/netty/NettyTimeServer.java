@@ -14,7 +14,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @author lihongjian
  * @since 2021/10/4
  */
-public class TimeServer {
+public class NettyTimeServer {
 
     public void bind(int port) throws Exception {
         //配置服务端的NIO线程组，包含了一组NIO线程，专门用于网络事件的处理，实际上就是一组Reactor线程组
@@ -57,7 +57,7 @@ public class TimeServer {
 
         @Override
         protected void initChannel(SocketChannel ch) throws Exception {
-            ch.pipeline().addLast(new TimeServerHandle());
+            ch.pipeline().addLast(new NettyTimeServerHandle());
         }
     }
 
@@ -70,6 +70,6 @@ public class TimeServer {
                 //None  采用默认值
             }
         }
-        new TimeServer().bind(port);
+        new NettyTimeServer().bind(port);
     }
 }
