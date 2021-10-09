@@ -35,6 +35,6 @@
 
 * [Netty Server、Client简单示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/nio/netty/v1)
 
-* [Netty模拟TCP拆包、粘包问题](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/nio/netty/v2)
+* [Netty模拟TCP粘包问题](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/nio/netty/v2)
 
-* [Netty解决TCP拆包、粘包问题](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/nio/netty/v3)
+* [Netty解决TCP粘包问题](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/nio/netty/v3)
