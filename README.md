@@ -16,7 +16,6 @@
 * [自定义插入式注解，校验代码命名格式](https://github.com/lhj502819/VariousCases/blob/main/CasesForJVM/src/main/java/cn/onenine/jvm/annotatiomprocesser)
     * [测试案例](https://github.com/lhj502819/VariousCases/blob/main/CasesForJVM/CodeNameCheckTest)
       1. 引用自定义插入式注解jar包，maven compile即可
-
 ## [Netty相关](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty)
 
 * [BIO代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/bio/v1)
