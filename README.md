@@ -9,10 +9,8 @@
 * [String常量池](https://www.yuque.com/lihongjian/fx3n4r/yuqzoi)
 * [JDK动态代理Demo](https://github.com/lhj502819/VariousCases/blob/main/CasesForJVM/src/main/java/cn/onenine/jvm/dynamicproxy)
 * [finalize分析](https://github.com/lhj502819/VariousCases/blob/main/src/main/java/cn/onenine/jvm/gc/FinalizeEscapeGC.java)
-  
        博客：https://www.yuque.com/lihongjian/fx3n4r/qwlcnh
 * [伪共享分析](https://github.com/lhj502819/VariousCases/blob/main/src/main/java/cn/onenine/jvm/gc/FalseSharingDemo.java)
-
       伪共享分析博客：https://www.yuque.com/lihongjian/fx3n4r/cnhs3h#RSAqI
 * [引用类型](https://github.com/lhj502819/VariousCases/blob/main/CasesForJVM/src/main/java/cn/onenine/jvm/reference)
 * [自定义插入式注解，校验代码命名格式](https://github.com/lhj502819/VariousCases/blob/main/CasesForJVM/src/main/java/cn/onenine/jvm/annotatiomprocesser)
