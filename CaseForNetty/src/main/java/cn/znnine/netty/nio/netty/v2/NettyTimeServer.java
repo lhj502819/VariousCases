@@ -9,7 +9,21 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 /**
- * 基于Netty的TimeServer服务器
+ * 基于Netty的TimeServer服务器，模拟粘包
+ *
+ * 日志：
+ * The time server receive order ：QUERY TIME ORDER
+ * -------省略部分QUERY TIME ORDER-------
+ * QUERY TIME ORDER
+ * QUERY TIME ORD; the counter is ：1
+ *
+ * =================分割线=========================
+ *
+ * The time server receive order ：
+ * -------省略部分QUERY TIME ORDER-------
+ * QUERY TIME ORDER; the counter is ：2
+ *
+ * 可以看到，虽然客户端循环发送了一百次，但是服务端只收到了两次，说明发生了粘包
  *
  * @author lihongjian
  * @since 2021/10/4
