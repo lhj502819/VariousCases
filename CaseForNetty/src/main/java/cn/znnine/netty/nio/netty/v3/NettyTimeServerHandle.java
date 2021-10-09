@@ -1,4 +1,4 @@
-package cn.znnine.netty.nio.netty;
+package cn.znnine.netty.nio.netty.v3;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -14,6 +14,9 @@ import java.util.Date;
  */
 public class NettyTimeServerHandle extends ChannelHandlerAdapter {
 
+
+    private int counter ;
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf buf = (ByteBuf) msg;
@@ -21,8 +24,11 @@ public class NettyTimeServerHandle extends ChannelHandlerAdapter {
         byte[] req = new byte[buf.readableBytes()];
         //通过readBytes方法将缓冲区中的字节数组复制到新建的byte数组中，最后通过new String()构造函数获取请求消息
         buf.readBytes(req);
-        String body = new String(req, "UTF-8");
-        System.out.println("The time server receive order ：" + body);
+//        String body = new String(req, "UTF-8");
+        //改造，模拟拆包、粘包，每读到一条消息后，就计一次数，然后发送应答消息给客户端，按照设计，服务端接收到的消息总数应该跟客户端发送的消息总数相同
+        //而且请求消息删除回车换行符后应该为“QUERY TIME ORDER”
+        String body = new String(req, "UTF-8").substring(0,req.length - System.getProperty("line.separator").length());
+        System.out.println("The time server receive order ：" + body + "; the counter is ：" + ++counter);
         String currentTime = "QUERY TIME ORDER".equalsIgnoreCase(body)
                 ? new Date(System.currentTimeMillis()).toString()
                 : "BAD ORDER";

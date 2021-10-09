@@ -1,4 +1,4 @@
-package cn.znnine.netty.nio.netty;
+package cn.znnine.netty.nio.netty.v2;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -13,12 +13,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class NettyTimeClientHandler extends ChannelHandlerAdapter {
 
-    private final ByteBuf firstMessage;
+
+    private int counter;
+
+    private byte[] req;
 
     public NettyTimeClientHandler(){
-        byte[] req = "QUERY TIME ORDER".getBytes();
-        firstMessage = Unpooled.buffer(req.length);
-        firstMessage.writeBytes(req);
+        //拆包、粘包问题模拟
+        req = ("QUERY TIME ORDER" + System.getProperty("line.separator")).getBytes();
+//        firstMessage = Unpooled.buffer(req.length);
+//        firstMessage.writeBytes(req);
     }
 
     /**
@@ -29,7 +33,12 @@ public class NettyTimeClientHandler extends ChannelHandlerAdapter {
      */
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        ctx.writeAndFlush(firstMessage);
+        ByteBuf message = null;
+        for(int i = 0 ; i<100 ;i++){
+            message = Unpooled.buffer(req.length);
+            message.writeBytes(req);
+            ctx.writeAndFlush(message);
+        }
     }
 
     /**
@@ -44,7 +53,7 @@ public class NettyTimeClientHandler extends ChannelHandlerAdapter {
         byte[] req = new byte[buf.readableBytes()];
         buf.readBytes(req);
         String body = new String(req, "UTF-8");
-        System.out.println("Now is :" + body);
+        System.out.println("Now is :" + body + "; the counter is ：" + ++counter);
     }
 
     @Override

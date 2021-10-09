@@ -1,4 +1,4 @@
-package cn.znnine.netty.nio.netty;
+package cn.znnine.netty.nio.netty.v1;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
