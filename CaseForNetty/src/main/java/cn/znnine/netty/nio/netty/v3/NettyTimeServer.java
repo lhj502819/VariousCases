@@ -7,9 +7,11 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.string.StringDecoder;
 
 /**
- * 基于Netty的TimeServer服务器
+ * 基于Netty的TimeServer服务器，通过LineBasedFrameDecoder和StringDecoder解决TCP粘包问题
  *
  * @author lihongjian
  * @since 2021/10/4
@@ -57,6 +59,9 @@ public class NettyTimeServer {
 
         @Override
         protected void initChannel(SocketChannel ch) throws Exception {
+            //新增LineBasedFrameDecoder和StringDecoder解码器
+            ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
+            ch.pipeline().addLast(new StringDecoder());
             ch.pipeline().addLast(new NettyTimeServerHandle());
         }
     }
