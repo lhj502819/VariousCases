@@ -13,6 +13,11 @@ import io.netty.handler.codec.string.StringDecoder;
 /**
  * 基于Netty的TimeServer服务器，通过LineBasedFrameDecoder和StringDecoder解决TCP粘包问题
  *
+ * LineBasedFrameDecoder的工作原理是它一次遍历ByteBuf中的可读字节，判断是否有“\n”或者"\r\n"，如果有就以此位置为结束位置
+ *      同时支持配置单行的最大长度，如果连续读取到最大长度后仍然没有发现换行符，就会抛出异常，同时忽略掉之前读到的异常码流
+ * StringDecoder就是将接收到的对象转换成字符串，然后继续调用后面的Handler。
+ * LineBasedFrameDecoder+StringDecoder组合就是按行切换的文本解码器，它被设计用来支撑TCP的粘包拆包
+ *
  * @author lihongjian
  * @since 2021/10/4
  */
