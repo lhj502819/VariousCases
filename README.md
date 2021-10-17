@@ -38,3 +38,5 @@
 * [Netty模拟TCP粘包问题](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/nio/netty/v2)
 
 * [Netty解决TCP粘包问题](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/nio/netty/v3)
+
+* [DelimiterBasedFrameDecoder的使用](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/nio/netty/delimiter)
