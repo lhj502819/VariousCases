@@ -1,4 +1,4 @@
-package cn.znnine.netty.nio.netty.echo;
+package cn.znnine.netty.nio.netty.delimiter;
 
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerAdapter;

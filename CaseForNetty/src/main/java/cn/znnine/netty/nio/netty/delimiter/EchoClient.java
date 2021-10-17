@@ -1,7 +1,5 @@
-package cn.znnine.netty.nio.netty.echo;
+package cn.znnine.netty.nio.netty.delimiter;
 
-import cn.znnine.netty.nio.netty.v1.NettyTimeClient;
-import cn.znnine.netty.nio.netty.v1.NettyTimeClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
