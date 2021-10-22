@@ -10,6 +10,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.string.StringDecoder;
 
 /**
@@ -32,7 +34,12 @@ public class EchoClient {
                          */
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
+                            //通过在Msgpack解码器之前增加LengthFieldBasedFrameDecoder用于处理半包消息
+                            //在MessagePack编码器之前增加LengthFieldPrepender，它将在ByteBuf之前增加2个字节的消息长度字段
+                            ch.pipeline().addLast("frameDecoder",
+                                    new LengthFieldBasedFrameDecoder(65535,0,2,0,2));
                             ch.pipeline().addLast("decoder" , new MsgpackDecoder());
+                            ch.pipeline().addLast("frameEncoder" , new LengthFieldPrepender(2));
                             ch.pipeline().addLast("encoder" , new MsgpackEncoder());
                             ch.pipeline().addLast(new EchoClientHandler(1000));
                         }
