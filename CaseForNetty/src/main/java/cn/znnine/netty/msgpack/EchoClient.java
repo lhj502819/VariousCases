@@ -24,7 +24,7 @@ public class EchoClient {
             Bootstrap b = new Bootstrap();
             b.group(group).channel(NioSocketChannel.class)
                     .option(ChannelOption.TCP_NODELAY, true)
-                    .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
+//                    .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
                     .handler(new ChannelInitializer<SocketChannel>() {
                         /**
                          * 当创建NioSocketChannel成功之后，在进行初始化时，将它的ChannelHandler设置到ChannelPipeline中
@@ -32,9 +32,9 @@ public class EchoClient {
                          */
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast("encoder" , new MsgpackEncoder());
                             ch.pipeline().addLast("decoder" , new MsgpackDecoder());
-                            ch.pipeline().addLast(new EchoClientHandler(10));
+                            ch.pipeline().addLast("encoder" , new MsgpackEncoder());
+                            ch.pipeline().addLast(new EchoClientHandler(1000));
                         }
                     });
             //发起异步连接操作

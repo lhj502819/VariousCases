@@ -3,6 +3,9 @@ package cn.znnine.netty.msgpack;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import org.msgpack.annotation.Message;
+
+import java.io.Serializable;
 
 /**
  * @author lihongjian
@@ -21,7 +24,7 @@ public class EchoClientHandler extends ChannelHandlerAdapter {
         for (UserInfo userInfo : userInfos) {
             ctx.write(userInfo);
         }
-//        ctx.flush();
+        ctx.flush();
     }
 
     @Override
@@ -54,7 +57,11 @@ public class EchoClientHandler extends ChannelHandlerAdapter {
     }
 
 }
-class UserInfo{
+@Message
+class UserInfo implements Serializable {
+
+
+    private static final long serialVersionUID = 4462438410729909148L;
     int age;
 
     String name;
