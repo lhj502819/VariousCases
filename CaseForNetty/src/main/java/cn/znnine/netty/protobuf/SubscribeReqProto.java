@@ -3,6 +3,10 @@
 
 package cn.znnine.netty.protobuf;
 
+/**
+ * 通过运行 protoc.exe --java_out=.\  .\SubscribeResp.proto生成对应Java文件
+ * protoc.exe需要从Github中下载，地址为https://github.com/protocolbuffers/protobuf/releases
+ */
 public final class SubscribeReqProto {
   private SubscribeReqProto() {}
   public static void registerAllExtensions(
