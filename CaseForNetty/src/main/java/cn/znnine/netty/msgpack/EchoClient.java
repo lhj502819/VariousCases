@@ -36,6 +36,8 @@ public class EchoClient {
                         protected void initChannel(SocketChannel ch) throws Exception {
                             //通过在Msgpack解码器之前增加LengthFieldBasedFrameDecoder用于处理半包消息
                             //在MessagePack编码器之前增加LengthFieldPrepender，它将在ByteBuf之前增加2个字节的消息长度字段
+                            //LengthFieldPrepender将会在ByteBuf之前增加2个字节的消息长度字段
+                            //
                             ch.pipeline().addLast("frameDecoder",
                                     new LengthFieldBasedFrameDecoder(65535,0,2,0,2));
                             ch.pipeline().addLast("decoder" , new MsgpackDecoder());
