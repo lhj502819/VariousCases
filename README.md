@@ -41,3 +41,8 @@
 
 * [DelimiterBasedFrameDecoder的使用](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/nio/netty/delimiter)
 * [FixedLengthFrameDecoder的使用](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/nio/netty/fixedlength)
+
+## 编解码相关
+* [MessagePack相关代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/msgpack)
+* [Google Protobuf使用示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/protobuf)
+
