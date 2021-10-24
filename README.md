@@ -47,7 +47,7 @@
 * [MessagePack相关代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/msgpack)
 ### Google Protobuf
 将数据结构以.proto文件进行描述，通过代码生成工具可以生成对应数据结果的POJO对象和Protobuf相关的方法和属性
-####优点
+#### 优点
 * 在谷歌内部长期使用，产品成熟度高
 * 跨语言、支持多种语言，包括C++、Java和Python
 * 编码后的消息更小，更加有利于存储和传输
