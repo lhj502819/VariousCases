@@ -63,4 +63,16 @@ ProtobufDecoder仅仅负责解码，它不支持读半包。因此在ProtobufDec
   2. 继承Netty提供的通用半包解码器LengthFieldBasedFrameDecoder；
   3. 继承ByteToMessageDecoder类，自己处理半包消息
     
+### JBoss Marshalling
+JBoss Marshalling是一个Java对象的序列化API包，修正了JDK自带的序列化包的很多问题，但又保持跟java.io.Serializable接口的兼容。
+同时增加了一些可调的参数和附加特性，并且这些参数和特性可通过工厂类进行配置
+#### 优点
+* 可插拔的类解析器，提供更加便捷的类加载定制策略，通过一个接口即可实现定制
+* 可插拔的对象替换技术，不需要通过继承的方式
+* 可插拔的预定义类缓存表，可以减少序列化的字节数组长度，提升常用类型的对象序列化性能
+* 无须实现java.io.Serializable接口，即可实现Java序列化
+* 通过缓存技术提升对象的序列化性能
+#### 缺点
+相比于前边介绍的两种编码框架，JBoss Marshalling更多的是JBoss内部使用，应用范围有限
 
+#### [代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/codec/marishalling)
