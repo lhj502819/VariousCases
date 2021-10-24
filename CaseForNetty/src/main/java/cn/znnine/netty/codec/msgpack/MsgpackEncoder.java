@@ -1,12 +1,9 @@
-package cn.znnine.netty.msgpack;
+package cn.znnine.netty.codec.msgpack;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
-import io.netty.handler.codec.MessageToMessageEncoder;
 import org.msgpack.MessagePack;
-
-import java.util.List;
 
 /**
  * Msgpack编码器

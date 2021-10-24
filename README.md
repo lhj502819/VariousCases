@@ -43,11 +43,20 @@
 * [FixedLengthFrameDecoder的使用](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/nio/netty/fixedlength)
 
 ## 编解码相关
+### MessagePack
 * [MessagePack相关代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/msgpack)
 ### Google Protobuf
-* [Google Protobuf使用示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/protobuf)
-* 使用Protobuf的注意事项 </br>
-  ProtobufDecoder仅仅负责解码，它不支持读半包。因此在ProtobufDecoder前面，一定要有能有处理读半包的解码器，有以下三种方式可以选择
+将数据结构以.proto文件进行描述，通过代码生成工具可以生成对应数据结果的POJO对象和Protobuf相关的方法和属性
+####优点
+* 在谷歌内部长期使用，产品成熟度高
+* 跨语言、支持多种语言，包括C++、Java和Python
+* 编码后的消息更小，更加有利于存储和传输
+* 编解码的性能非常高
+* 支持不通协议版本的向后兼容
+* 支持定义可选和必选字段
+#### [Google Protobuf使用示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/protobuf)
+#### 使用的注意事项 
+ProtobufDecoder仅仅负责解码，它不支持读半包。因此在ProtobufDecoder前面，一定要有能有处理读半包的解码器，有以下三种方式可以选择
   1. 使用Netty提供的ProtobufVarint32FrameDecoder，它可以处理半包消息
   2. 继承Netty提供的通用半包解码器LengthFieldBasedFrameDecoder；
   3. 继承ByteToMessageDecoder类，自己处理半包消息

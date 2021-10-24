@@ -1,5 +1,5 @@
 package netty;
-option java_package= "cn.znnine.netty.protobuf";
+option java_package= "cn.znnine.netty.codec.protobuf";
 option java_outer_classname="SubscribeReqProto";
 
 message SubscribeReq{

@@ -1,6 +1,6 @@
-package cn.znnine.netty.protobuf.booksub;
+package cn.znnine.netty.codec.protobuf.booksub;
 
-import cn.znnine.netty.protobuf.demo.SubscribeReqProto;
+import cn.znnine.netty.codec.protobuf.demo.SubscribeReqProto;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 

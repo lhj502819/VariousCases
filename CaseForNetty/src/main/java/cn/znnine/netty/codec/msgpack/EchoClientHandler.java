@@ -1,6 +1,5 @@
-package cn.znnine.netty.msgpack;
+package cn.znnine.netty.codec.msgpack;
 
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 import org.msgpack.annotation.Message;

@@ -1,4 +1,4 @@
-package cn.znnine.netty.protobuf.demo;
+package cn.znnine.netty.codec.protobuf.demo;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
