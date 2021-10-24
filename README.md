@@ -44,7 +44,7 @@
 
 ## 编解码相关
 ### MessagePack
-* [MessagePack相关代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/msgpack)
+* [MessagePack相关代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/codec/msgpack)
 ### Google Protobuf
 将数据结构以.proto文件进行描述，通过代码生成工具可以生成对应数据结果的POJO对象和Protobuf相关的方法和属性
 #### 优点
@@ -54,7 +54,7 @@
 * 编解码的性能非常高
 * 支持不通协议版本的向后兼容
 * 支持定义可选和必选字段
-#### [Google Protobuf使用示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/protobuf)
+#### [Google Protobuf使用示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/codec/protobuf)
 * 可以使用protoc.exe通过.proto文件生成.java文件，命令为：protoc.exe --java_out=.\ .\SubscribeReq.proto，文件格式可看[代码](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/codec/protobuf/proto)
 
 #### 使用的注意事项 
