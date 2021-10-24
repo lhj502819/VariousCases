@@ -75,4 +75,4 @@ JBoss Marshalling是一个Java对象的序列化API包，修正了JDK自带的�
 #### 缺点
 相比于前边介绍的两种编码框架，JBoss Marshalling更多的是JBoss内部使用，应用范围有限
 
-#### [代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/codec/marishalling)
+#### [代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/codec/marshalling)
