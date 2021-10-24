@@ -44,5 +44,12 @@
 
 ## 编解码相关
 * [MessagePack相关代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/msgpack)
+### Google Protobuf
 * [Google Protobuf使用示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/protobuf)
+* 使用Protobuf的注意事项 </br>
+  ProtobufDecoder仅仅负责解码，它不支持读半包。因此在ProtobufDecoder前面，一定要有能有处理读半包的解码器，有以下三种方式可以选择
+  1. 使用Netty提供的ProtobufVarint32FrameDecoder，它可以处理半包消息
+  2. 继承Netty提供的通用半包解码器LengthFieldBasedFrameDecoder；
+  3. 继承ByteToMessageDecoder类，自己处理半包消息
+    
 
