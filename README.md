@@ -55,6 +55,8 @@
 * 支持不通协议版本的向后兼容
 * 支持定义可选和必选字段
 #### [Google Protobuf使用示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/protobuf)
+* 可以使用protoc.exe通过.proto文件生成.java文件，命令为：protoc.exe --java_out=.\ .\SubscribeReq.proto，文件格式可看[代码](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/codec/protobuf/proto)
+
 #### 使用的注意事项 
 ProtobufDecoder仅仅负责解码，它不支持读半包。因此在ProtobufDecoder前面，一定要有能有处理读半包的解码器，有以下三种方式可以选择
   1. 使用Netty提供的ProtobufVarint32FrameDecoder，它可以处理半包消息
