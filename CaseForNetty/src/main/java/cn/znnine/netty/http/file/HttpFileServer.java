@@ -23,7 +23,7 @@ import io.netty.handler.stream.ChunkedWriteHandler;
  */
 public class HttpFileServer {
 
-    private static final String DEFAULT_URL = "CaseForNetty/src/main/java/cn/znnine/netty/http/file";
+    private static final String DEFAULT_URL = "/CaseForNetty/src/main/java/cn/znnine/netty/http/file";
 
     public void run(final int port , final String url) throws InterruptedException {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
