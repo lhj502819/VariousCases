@@ -81,6 +81,7 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
         }
         RandomAccessFile randomAccessFile;
         try {
+            //以只读的方式打开文件
             randomAccessFile = new RandomAccessFile(file, "r");
         } catch (FileNotFoundException foundException) {
             sendError(ctx, NOT_FOUND);
@@ -119,8 +120,11 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
                 }
             }
         });
+        //使用chunked编码，最后需要发送一个编码结束的空消息体，将LastHttpContent.EMPTY_LAST_CONTENT发送到缓冲区中，标识所有的消息已经发送完成
+        //同时调用flush方法将之前发送到缓冲区的消息刷到SocketChannel中发送给对方
         ChannelFuture lastContentFuture = ctx.writeAndFlush(LastHttpContent.EMPTY_LAST_CONTENT);
         if (!isKeepAlive(request)) {
+            //如果是非keepAlive的，最后一包消息发送完成后，服务端要主动关闭连接
             lastContentFuture.addListener(ChannelFutureListener.CLOSE);
         }
     }
@@ -190,7 +194,7 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
         //将缓冲区中的响应消磁存放到HTTP应答消息中，释放缓冲区
         response.content().writeBytes(buffer);
         buffer.release();
-        //讲响应消息发送到缓冲区并刷新到SocketChannel中
+        //将响应消息发送到缓冲区并刷新到SocketChannel中
         ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
     }
 
