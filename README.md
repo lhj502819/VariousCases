@@ -16,7 +16,7 @@
 * [自定义插入式注解，校验代码命名格式](https://github.com/lhj502819/VariousCases/blob/main/CasesForJVM/src/main/java/cn/onenine/jvm/annotatiomprocesser)
     * [测试案例](https://github.com/lhj502819/VariousCases/blob/main/CasesForJVM/CodeNameCheckTest)
       1. 引用自定义插入式注解jar包，maven compile即可
-## [Netty相关](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty)
+## [Netty权威指南](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty)
 
 * [BIO代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/bio/v1)
 
@@ -76,3 +76,6 @@ JBoss Marshalling是一个Java对象的序列化API包，修正了JDK自带的�
 相比于前边介绍的两种编码框架，JBoss Marshalling更多的是JBoss内部使用，应用范围有限
 
 #### [代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/codec/marshalling)
+
+## 基于Netty开发Http文件服务器
+#### [代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/http/file)
