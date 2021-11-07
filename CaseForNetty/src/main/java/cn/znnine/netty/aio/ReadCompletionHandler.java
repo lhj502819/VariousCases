@@ -1,7 +1,7 @@
 package cn.znnine.netty.aio;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -33,7 +33,6 @@ public class ReadCompletionHandler implements CompletionHandler<Integer, ByteBuf
         attachment.get(body);
         try {
             String req = new String(body, "UTF-8");
-            log.info("The time server receive order：" + body);
             String currentTime = "QUERY TIME ORDER".equalsIgnoreCase(req)
                     ? new Date(System.currentTimeMillis()).toString()
                     : "BAD ORDER";
@@ -44,7 +43,7 @@ public class ReadCompletionHandler implements CompletionHandler<Integer, ByteBuf
     }
 
     private void doWrite(String currentTime) {
-        if(StringUtils.hasText(currentTime)){
+        if(StringUtils.isNotBlank(currentTime)){
             byte[] bytes = currentTime.getBytes();
             ByteBuffer writeBuffer = ByteBuffer.allocate(bytes.length);
             writeBuffer.put(bytes);

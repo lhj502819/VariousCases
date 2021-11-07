@@ -1,4 +1,4 @@
-package cn.znnine.netty.http.file;
+package cn.znnine.netty.protocol.http.file;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

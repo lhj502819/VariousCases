@@ -1,7 +1,7 @@
 package cn.znnine.netty.nio.java;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -123,7 +123,7 @@ public class MultiplexerTimeServer implements Runnable {
     }
 
     private void doWrite(SocketChannel channel, String response) throws IOException{
-        if(StringUtils.hasText(response)){
+        if(StringUtils.isNotBlank(response)){
             byte[] bytes = response.getBytes();
             ByteBuffer writeBuffer = ByteBuffer.allocate(bytes.length);
             writeBuffer.put(bytes);

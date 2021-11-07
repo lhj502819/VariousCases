@@ -1,0 +1,3 @@
+基于Netty开发HTTP+XML协议栈，在Netty提供的HTTP基础协议栈上进行扩展和封装，以实现对上层业务的零侵入
+
+1. HTTP+XML请求消息编码类，HttpXmlRequestEncoder
