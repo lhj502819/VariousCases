@@ -78,4 +78,4 @@ JBoss Marshalling是一个Java对象的序列化API包，修正了JDK自带的�
 #### [代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/codec/marshalling)
 
 ## 基于Netty开发Http文件服务器
-#### [代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/http/file)
+#### [代码示例](https://github.com/lhj502819/VariousCases/tree/main/CaseForNetty/src/main/java/cn/znnine/netty/protocol/http/file)
