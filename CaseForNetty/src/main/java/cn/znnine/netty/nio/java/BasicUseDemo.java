@@ -67,8 +67,6 @@ public class BasicUseDemo {
 //        }
         //将POJO对象encode成ByteBuffer，调用SocketChannel的异步write接口，将消息异步发送给客户端
 //        channel.write(buffer);
-
-
         /**
          * 注意：如果发送区TCP缓冲区满，会导致写半包，此时需要注册监听写操作位，循环写，直到整包消息写入TCP缓冲区。
          */

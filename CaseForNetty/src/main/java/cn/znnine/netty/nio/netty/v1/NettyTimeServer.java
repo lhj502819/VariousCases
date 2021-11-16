@@ -26,7 +26,7 @@ public class NettyTimeServer {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
                     /**
-                     * SO_BACKLOG对应着TCP的backlog，在TCP建立连接阶段，内核维护着两个队列：
+                     * SO_BACKLOG 对应着TCP的backlog，在TCP建立连接阶段，内核维护着两个队列：
                      *   1、未完成队列：正处于三次握手当中，客户端发送SYN过来，
                      *   服务端回应SYN+ACK之后，服务端当前处于SYN_RECV状态，此时连接在未完成队列中
                      *   2、已完成队列：已完成三次握手，客户端回应ACK之后，两边都处于ESTABLISHED，

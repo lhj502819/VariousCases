@@ -6,8 +6,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Description：
- *
  * @author li.hongjian
  * @email lhj502819@163.com
  * @since 2021/9/17
