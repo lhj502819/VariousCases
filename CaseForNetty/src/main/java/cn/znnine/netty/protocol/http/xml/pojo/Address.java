@@ -11,25 +11,25 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @XStreamAlias("billTo")
 public class Address {
-    /**
-     * 第一街道信息（必填）
-     */
+    /** First line of street information (required). */
     private String street1;
 
-    /**
-     * 第二街道信息（可选）
-     */
+    /** Second line of street information (optional). */
     private String street2;
 
-    /**
-     * 城市
-     */
     private String city;
 
     /**
-     * State abbreviation(required for the U.S and Canada, optional otherwise)
+     * State abbreviation (required for the U.S. and Canada, optional
+     * otherwise).
      */
     private String state;
+
+    /** Postal code (required for the U.S. and Canada, optional otherwise). */
+    private String postCode;
+
+    /** Country name (optional, U.S. assumed if not supplied). */
+    private String country;
 
     public String getStreet1() {
         return street1;
@@ -63,13 +63,31 @@ public class Address {
         this.state = state;
     }
 
+    public String getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see java.lang.Object#toString()
+     */
     @Override
     public String toString() {
-        return "Address{" +
-                "street1='" + street1 + '\'' +
-                ", street2='" + street2 + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                '}';
+        return "Address [street1=" + street1 + ", street2=" + street2
+                + ", city=" + city + ", state=" + state + ", postCode="
+                + postCode + ", country=" + country + "]";
     }
 }

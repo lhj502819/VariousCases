@@ -1,36 +1,36 @@
 package cn.znnine.netty.protocol.http.xml.pojo;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
 /**
  * @author lihongjian
  * @since 2021/11/7
  */
-@XStreamAlias("order")
 public class Order {
-    @XStreamAsAttribute
+
     private long orderNumber;
+
     private Customer customer;
 
-    /**
-     * 账单地址信息
-     */
+    /** Billing address information. */
     private Address billTo;
 
     private Shipping shipping;
 
+    /**
+     * Shipping address information. If missing, the billing address is also
+     * used as the shipping address.
+     */
     private Address shipTo;
 
-    @XStreamAsAttribute
     private Float total;
 
     public long getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(long orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setOrderNumber(long orderId) {
+        this.orderNumber = orderId;
     }
 
     public Customer getCustomer() {
@@ -73,16 +73,16 @@ public class Order {
         this.total = total;
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see java.lang.Object#toString()
+     */
     @Override
     public String toString() {
-        return "Order{" +
-                "orderNumber=" + orderNumber +
-                ", customer=" + customer +
-                ", billTo=" + billTo +
-                ", shipping=" + shipping +
-                ", shipTo=" + shipTo +
-                ", total=" + total +
-                '}';
+        return "Order [orderNumber=" + orderNumber + ", customer=" + customer
+                + ", billTo=" + billTo + ", shipping=" + shipping.toString()
+                + ", shipTo=" + shipTo + ", total=" + total + "]";
     }
 }
 

@@ -7,9 +7,5 @@ package cn.znnine.netty.protocol.http.xml.pojo;
  * @since 2021/11/7
  */
 public enum Shipping {
-    STANDARD_MALL,
-    PRIORITY_MALL,
-    INTERNATIONAL_MALL,
-    DOMESTIC_EXPRESS,
-    INTERNATIONAL_EXPRESS;
+    STANDARD_MAIL, PRIORITY_MAIL, INTERNATIONAL_MAIL, DOMESTIC_EXPRESS, INTERNATIONAL_EXPRESS
 }

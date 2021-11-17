@@ -3,7 +3,9 @@ package cn.znnine.netty.protocol.http.xml;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
+import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.IBindingFactory;
+import org.jibx.runtime.IUnmarshallingContext;
 
 import java.io.StringReader;
 import java.nio.charset.Charset;
@@ -38,8 +40,27 @@ public abstract class AbstractHttpXmlDecoder<T> extends MessageToMessageDecoder<
         this.isPrint = isPrint;
     }
 
-    protected Object decode0(ChannelHandlerContext arg0 , ByteBuf body){
-
+    protected Object decode0(ChannelHandlerContext arg0 , ByteBuf body) throws Exception{
+        //通过JiBx类库将XML转换成POJO对象
+        factory = BindingDirectory.getFactory(clazz);
+        String content = body.toString(UTF_8);
+        if(isPrint){
+            System.out.println("The body is : " + content);
+        }
+        reader = new StringReader(content);
+        IUnmarshallingContext uctx = factory.createUnmarshallingContext();
+        Object result = uctx.unmarshalDocument(reader);
+        reader.close();;
+        reader = null;
+        return result;
     }
 
+    @Skip
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        if(reader != null){
+            reader.close();
+            reader = null;
+        }
+    }
 }

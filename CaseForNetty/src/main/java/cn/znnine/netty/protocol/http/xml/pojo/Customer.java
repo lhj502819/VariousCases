@@ -9,23 +9,61 @@ import java.util.List;
  * @author lihongjian
  * @since 2021/11/7
  */
-public class Customer {
-
-    @XmlAnyAttribute
+public class Customer  {
     private long customerNumber;
 
-    /**
-     * 个人名字
-     */
+    /** Personal name. */
     private String firstName;
 
-    /**
-     * 姓
-     */
+    /** Family name. */
     private String lastName;
 
-    /**
-     * 中间名
-     */
+    /** Middle name(s), if any. */
     private List<String> middleNames;
+
+    public long getCustomerNumber() {
+        return customerNumber;
+    }
+
+    public void setCustomerNumber(long customerId) {
+        this.customerNumber = customerId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public List<String> getMiddleNames() {
+        return middleNames;
+    }
+
+    public void setMiddleNames(List<String> middleNames) {
+        this.middleNames = middleNames;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "Customer [customerNumber=" + customerNumber + ", firstName="
+                + firstName + ", lastName=" + lastName + ", middleNames="
+                + middleNames + "]";
+    }
+
 }
+
