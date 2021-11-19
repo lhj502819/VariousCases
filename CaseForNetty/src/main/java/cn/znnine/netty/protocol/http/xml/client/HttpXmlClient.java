@@ -1,5 +1,6 @@
 package cn.znnine.netty.protocol.http.xml.client;
 
+import cn.znnine.netty.protocol.http.xml.HttpXmlRequestEncoder;
 import cn.znnine.netty.protocol.http.xml.HttpXmlResponseDecoder;
 import cn.znnine.netty.protocol.http.xml.HttpXmlResponseEncoder;
 import cn.znnine.netty.protocol.http.xml.pojo.Order;
@@ -35,14 +36,15 @@ public class HttpXmlClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
+                            //XML解码器
                             ch.pipeline().addLast("http-decoder" , new HttpResponseDecoder());
                             //负责将1个HTTP请求消息的多个部分合并成一条完整的HTTP消息
                             ch.pipeline().addLast("http-aggregator", new HttpObjectAggregator(65536));
-                            //XML解码器
                             ch.pipeline().addLast(
                                     "xml-decoder" , new HttpXmlResponseDecoder(Order.class,true));
                             ch.pipeline().addLast("http-encoder",new HttpRequestEncoder());
-                            ch.pipeline().addLast("xml-encoder" , new HttpXmlResponseEncoder());
+                            //XML编码器
+                            ch.pipeline().addLast("xml-encoder" , new HttpXmlRequestEncoder());
                             ch.pipeline().addLast("xmlClientHandler" , new HttpXmlClientHandle());
                         }
                     });

@@ -1,7 +1,5 @@
 package cn.znnine.netty.protocol.http.xml.server;
 
-import cn.znnine.netty.codec.protobuf.booksub.SubReqServerHandler;
-import cn.znnine.netty.codec.protobuf.demo.SubscribeReqProto;
 import cn.znnine.netty.protocol.http.xml.HttpXmlRequestDecoder;
 import cn.znnine.netty.protocol.http.xml.HttpXmlResponseEncoder;
 import cn.znnine.netty.protocol.http.xml.pojo.Order;
@@ -16,10 +14,6 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
-import io.netty.handler.codec.protobuf.ProtobufDecoder;
-import io.netty.handler.codec.protobuf.ProtobufEncoder;
-import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
-import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
@@ -46,6 +40,7 @@ public class HttpXmlServer {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline().addLast("http-decoder",new HttpRequestDecoder());
+                            //负责将1个HTTP请求消息的多个部分合并成一条完整的HTTP消息
                             ch.pipeline().addLast("http-aggregator", new HttpObjectAggregator(65535));
                             ch.pipeline().addLast("xml-decoder" , new HttpXmlRequestDecoder(Order.class,true));
                             ch.pipeline().addLast("http-encoder" , new HttpResponseEncoder());

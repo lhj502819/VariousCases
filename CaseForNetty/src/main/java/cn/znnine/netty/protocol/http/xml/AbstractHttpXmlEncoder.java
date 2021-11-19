@@ -1,5 +1,9 @@
 package cn.znnine.netty.protocol.http.xml;
 
+import cn.znnine.netty.protocol.http.xml.pojo.Customer;
+import cn.znnine.netty.protocol.http.xml.pojo.Order;
+import cn.znnine.netty.protocol.http.xml.pojo.Shipping;
+import com.thoughtworks.xstream.XStream;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
@@ -18,31 +22,24 @@ import java.nio.charset.Charset;
  * @since 2021/11/7
  */
 public abstract class AbstractHttpXmlEncoder<T> extends MessageToMessageEncoder<T> {
-    IBindingFactory factory = null;
-    StringWriter writer = null;
+
     final static String CHARSET_NAME = "UTF-8";
 
     final static Charset UTF_8 = Charset.forName(CHARSET_NAME);
 
     protected ByteBuf encode0(ChannelHandlerContext ctx, Object body) throws Exception {
-        factory = BindingDirectory.getFactory(body.getClass());
-        writer = new StringWriter();
-        IMarshallingContext mctx = factory.createMarshallingContext();
-        mctx.setIndent(2);
-        mctx.marshalDocument(body, CHARSET_NAME, null, writer);
-        String xmlStr = writer.toString();
-        writer.close();
-        writer = null;
-        ByteBuf encodeBuf = Unpooled.copiedBuffer(xmlStr, UTF_8);
+        //将Order类型转换为xml流
+        XStream xStream = new XStream();
+        xStream.setMode(XStream.NO_REFERENCES);
+        //注册使用了注解的VO
+        xStream.processAnnotations(new Class[]{Order.class, Customer.class, Shipping.class});
+        String xml = xStream.toXML(body);
+        ByteBuf encodeBuf = Unpooled.copiedBuffer(xml, UTF_8);
         return encodeBuf;
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        //释放资源
-        if(writer != null){
-            writer.close();
-            writer = null;
-        }
+        System.out.println("fail to encoder");
     }
 }

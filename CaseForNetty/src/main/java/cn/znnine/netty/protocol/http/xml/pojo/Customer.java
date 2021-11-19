@@ -1,5 +1,7 @@
 package cn.znnine.netty.protocol.http.xml.pojo;
 
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+
 import javax.xml.bind.annotation.XmlAnyAttribute;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import java.util.List;
  * @since 2021/11/7
  */
 public class Customer  {
+    @XStreamAsAttribute
     private long customerNumber;
 
     /** Personal name. */

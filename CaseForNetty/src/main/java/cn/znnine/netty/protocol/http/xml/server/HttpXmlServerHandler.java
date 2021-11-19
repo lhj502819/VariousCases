@@ -33,12 +33,7 @@ public class HttpXmlServerHandler extends SimpleChannelInboundHandler<HttpXmlReq
         doBiz(order);
         ChannelFuture future = ctx.writeAndFlush(new HttpXmlResponse(null, order));
         if(!isKeepAlive(request)){
-            future.addListener(new GenericFutureListener<Future<? super Void>>() {
-                @Override
-                public void operationComplete(Future<? super Void> future) throws Exception {
-                    ctx.close();
-                }
-            });
+            future.addListener(future1 -> ctx.close());
         }
     }
 

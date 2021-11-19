@@ -1,13 +1,16 @@
 package cn.znnine.netty.protocol.http.xml.pojo;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
 /**
  * @author lihongjian
  * @since 2021/11/7
  */
+@XStreamAlias("order")
 public class Order {
 
+    @XStreamAsAttribute
     private long orderNumber;
 
     private Customer customer;
@@ -23,6 +26,7 @@ public class Order {
      */
     private Address shipTo;
 
+    @XStreamAsAttribute
     private Float total;
 
     public long getOrderNumber() {

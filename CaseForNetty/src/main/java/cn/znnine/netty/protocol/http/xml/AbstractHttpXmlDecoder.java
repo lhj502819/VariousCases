@@ -1,5 +1,9 @@
 package cn.znnine.netty.protocol.http.xml;
 
+import cn.znnine.netty.protocol.http.xml.pojo.Customer;
+import cn.znnine.netty.protocol.http.xml.pojo.Order;
+import cn.znnine.netty.protocol.http.xml.pojo.Shipping;
+import com.thoughtworks.xstream.XStream;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
@@ -18,11 +22,6 @@ import java.nio.charset.Charset;
  * @since 2021/11/12
  */
 public abstract class AbstractHttpXmlDecoder<T> extends MessageToMessageDecoder<T> {
-
-    private IBindingFactory factory;
-
-    private StringReader reader;
-
     private Class<?> clazz;
     //是否输出码流的标志
     private boolean isPrint;
@@ -41,26 +40,21 @@ public abstract class AbstractHttpXmlDecoder<T> extends MessageToMessageDecoder<
     }
 
     protected Object decode0(ChannelHandlerContext arg0 , ByteBuf body) throws Exception{
-        //通过JiBx类库将XML转换成POJO对象
-        factory = BindingDirectory.getFactory(clazz);
         String content = body.toString(UTF_8);
         if(isPrint){
             System.out.println("The body is : " + content);
         }
-        reader = new StringReader(content);
-        IUnmarshallingContext uctx = factory.createUnmarshallingContext();
-        Object result = uctx.unmarshalDocument(reader);
-        reader.close();;
-        reader = null;
+        XStream xs = new XStream();
+        xs.setMode(XStream.NO_REFERENCES);
+        //注册使用了注解的VO
+        xs.processAnnotations(new Class[]{Order.class, Customer.class, Shipping.class});
+        Object result = xs.fromXML(content);
         return result;
     }
 
     @Skip
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        if(reader != null){
-            reader.close();
-            reader = null;
-        }
+        System.out.println("decode fail");
     }
 }
