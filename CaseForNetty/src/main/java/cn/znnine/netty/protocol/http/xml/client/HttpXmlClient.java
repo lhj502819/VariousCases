@@ -35,7 +35,7 @@ public class HttpXmlClient {
                     .option(ChannelOption.TCP_NODELAY,true)
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
-                        protected void initChannel(SocketChannel ch) throws Exception {
+                        protected void initChannel(SocketChannel ch) {
                             //XML解码器
                             ch.pipeline().addLast("http-decoder" , new HttpResponseDecoder());
                             //负责将1个HTTP请求消息的多个部分合并成一条完整的HTTP消息
