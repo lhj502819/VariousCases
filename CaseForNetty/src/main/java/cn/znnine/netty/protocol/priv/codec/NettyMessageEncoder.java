@@ -5,6 +5,7 @@ import cn.znnine.netty.protocol.priv.struct.NettyMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.codec.MessageToByteEncoder;
 import io.netty.handler.codec.MessageToMessageEncoder;
 
 import java.nio.charset.StandardCharsets;
@@ -19,7 +20,7 @@ import java.util.Map;
  * @author lihongjian
  * @since 2021/11/22
  */
-public class NettyMessageEncoder extends MessageToMessageEncoder<NettyMessage> {
+public class NettyMessageEncoder extends MessageToByteEncoder<NettyMessage> {
 
     /**
      * 使用JBoss的Marshalling去编解码
@@ -31,11 +32,11 @@ public class NettyMessageEncoder extends MessageToMessageEncoder<NettyMessage> {
     }
 
     @Override
-    protected void encode(ChannelHandlerContext ctx, NettyMessage msg, List<Object> out) throws Exception {
+    protected void encode(ChannelHandlerContext ctx, NettyMessage msg,
+                          ByteBuf sendBuf) throws Exception {
         if(msg == null || msg.getHeader() == null){
             throw new Exception("The encode message is null");
         }
-        ByteBuf sendBuf = Unpooled.buffer();
         Header header = msg.getHeader();
         sendBuf.writeInt(header.getCrcCode());
         sendBuf.writeInt(header.getLength());
@@ -49,7 +50,7 @@ public class NettyMessageEncoder extends MessageToMessageEncoder<NettyMessage> {
         Object value = null;
         for (Map.Entry<String, Object> param : msg.getHeader().getAttachment().entrySet()) {
             key = param.getKey();
-            keyArray = key.getBytes(StandardCharsets.UTF_8);
+            keyArray = key.getBytes("UTF-8");
             sendBuf.writeInt(keyArray.length);
             sendBuf.writeBytes(keyArray);
             value = param.getValue();
@@ -63,7 +64,7 @@ public class NettyMessageEncoder extends MessageToMessageEncoder<NettyMessage> {
             marshallingEncoder.encode(msg.getBody(),sendBuf);
         }else {
             sendBuf.writeInt(0);
-            sendBuf.setInt(4,sendBuf.readableBytes());
         }
+        sendBuf.setInt(4,sendBuf.readableBytes() - 8);
     }
 }

@@ -28,6 +28,7 @@ public class LoginAuthRespHandler extends ChannelHandlerAdapter {
         NettyMessage message = (NettyMessage) msg;
         //如果是握手请求消息，则处理，其他消息则透传到下一个handler
         if (message.getHeader() != null && message.getHeader().getType() == MessageType.LOGIN_REQ.getValue()) {
+            System.out.println("receive client login auth req");
             String nodeIndex = ctx.channel().remoteAddress().toString();
             NettyMessage loginResp = null;
             //根据客户端的源地址进行重复登录判断，如果发现重复登录，拒绝
