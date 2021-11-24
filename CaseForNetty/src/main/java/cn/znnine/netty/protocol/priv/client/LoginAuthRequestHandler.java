@@ -1,4 +1,4 @@
-package cn.znnine.netty.protocol.priv.server;
+package cn.znnine.netty.protocol.priv.client;
 
 import cn.znnine.netty.protocol.priv.constant.MessageType;
 import cn.znnine.netty.protocol.priv.struct.Header;
@@ -9,17 +9,18 @@ import io.netty.channel.ChannelHandlerContext;
 /**
  * 握手认证的客户端，用于在通道激活时发起握手请求
  *
+ * 当客户端和服务端TCP三次握手成功后，由客户端构造握手请求消息发送给服务端
+ * 由于采用IP白名单认证机制，因此不需要携带消息体，消息体为空，消息类型为“3：握手请求消息”
+ * 握手请求发送后，按照协议规范，服务端需要返回握手应答消息
+ *
  * @author lihongjian
  * @since 2021/11/22
  */
 public class LoginAuthRequestHandler extends ChannelHandlerAdapter {
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        /**
-         * 当客户端和服务端TCP三次握手成功后，由客户端构造握手请求消息发送给服务端
-         * 由于采用IP白名单认证机制，因此不需要携带消息体，消息体为空，消息类型为“3：握手请求消息”
-         * 握手请求发送后，按照协议规范，服务端需要返回握手应答消息
-         */
+        //发送认证请求
         ctx.writeAndFlush(buildLoginReq());
     }
 
