@@ -7,11 +7,6 @@ import com.thoughtworks.xstream.XStream;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
-import org.jibx.runtime.BindingDirectory;
-import org.jibx.runtime.IBindingFactory;
-import org.jibx.runtime.IUnmarshallingContext;
-
-import java.io.StringReader;
 import java.nio.charset.Charset;
 
 /**
@@ -52,7 +47,6 @@ public abstract class AbstractHttpXmlDecoder<T> extends MessageToMessageDecoder<
         return result;
     }
 
-    @Skip
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         System.out.println("decode fail");

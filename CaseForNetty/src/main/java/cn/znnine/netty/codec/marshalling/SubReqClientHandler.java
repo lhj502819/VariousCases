@@ -11,6 +11,7 @@ import java.util.List;
  * @since 2021/10/23
  */
 public class SubReqClientHandler extends ChannelHandlerAdapter {
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         for (int i = 0; i<10; i++){
