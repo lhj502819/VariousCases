@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
@@ -102,10 +103,11 @@ public class MultiplexerTimeServer implements Runnable {
                 ByteBuffer readBuffer = ByteBuffer.allocate(1024);
                 int readBytes = sc.read(readBuffer);
                 if (readBytes > 0){
+                    //调用flip方法切换为读模式
                     readBuffer.flip();
                     byte[] bytes = new byte[readBuffer.remaining()];
                     readBuffer.get(bytes);
-                    String body = new String(bytes, "UTF-8");
+                    String body = new String(bytes, StandardCharsets.UTF_8);
                     log.info("The time server receive order：" + body);
                     String currentTime = "QUERY TIME ORDER".equalsIgnoreCase(body)
                             ? new Date(System.currentTimeMillis()).toString()
