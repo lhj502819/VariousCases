@@ -29,7 +29,7 @@ public class NioFileChannelDemo {
                 }
                 buffer.flip();
                 fileOutputStreamChannel.write(buffer);
-                buffer.clear();
+//                buffer.clear();
             }
         } catch (IOException exception) {
             exception.printStackTrace();
