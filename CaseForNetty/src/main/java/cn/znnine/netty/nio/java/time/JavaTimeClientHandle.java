@@ -1,4 +1,4 @@
-package cn.znnine.netty.nio.java;
+package cn.znnine.netty.nio.java.time;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,7 +37,6 @@ public class JavaTimeClientHandle implements Runnable {
         try {
             //创建Reactor线程，创建多路复用器并启动线程
             selector = Selector.open();
-            //打开ServerSocketChannel，用于监听客户端的连接，它是所有客户端连接的父管道，是SelectableChannel（负责网络读写）的子类
             socketChannel = SocketChannel.open();
             //设置为非阻塞
             socketChannel.configureBlocking(false);

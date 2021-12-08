@@ -1,4 +1,4 @@
-package cn.znnine.netty.nio.java;
+package cn.znnine.netty.nio.java.time;
 
 /**
  * Java NIO Server
@@ -19,7 +19,5 @@ public class JavaTimeServer {
         MultiplexerTimeServer timeServer = new MultiplexerTimeServer(port);
 
         new Thread(timeServer,"NIO-MutiplexerTimeServer").start();
-
-
     }
 }
