@@ -18,6 +18,7 @@
     <modules>
         <module>CasesForJVM</module>
         <module>CaseForNetty</module>
+        <module>CaseForKafka</module>
     </modules>
     <packaging>pom</packaging>
 
