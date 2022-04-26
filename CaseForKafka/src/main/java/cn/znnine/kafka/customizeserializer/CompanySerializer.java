@@ -1,4 +1,4 @@
-package cn.znnine.kafka.pojo;
+package cn.znnine.kafka.customizeserializer;
 
 import org.apache.kafka.common.serialization.Serializer;
 
