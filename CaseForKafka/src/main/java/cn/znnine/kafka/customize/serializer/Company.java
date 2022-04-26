@@ -1,4 +1,4 @@
-package cn.znnine.kafka.customizeserializer;
+package cn.znnine.kafka.customize.serializer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
