@@ -1,4 +1,4 @@
-package cn.znnine.kafka;
+package cn.znnine.kafka.customize.produceranalysis;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -20,11 +20,7 @@ public class ConsumerFastStart {
     public static final String brokerList = "192.168.238.128:9092,192.168.238.130:9092,192.168.238.131:9092";
     public static final String topic = "test";
     public static final String groupId = "test-group-x";
-    public static final AtomicBoolean isRunning = new AtomicBoolean(true);
 
-    public static Properties initConfig(){
-        
-    }
 
     public static void main(String[] args) {
         Properties properties = new Properties();

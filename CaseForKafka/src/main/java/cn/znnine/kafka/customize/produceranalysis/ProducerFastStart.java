@@ -1,4 +1,4 @@
-package cn.znnine.kafka;
+package cn.znnine.kafka.customize.produceranalysis;
 
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
