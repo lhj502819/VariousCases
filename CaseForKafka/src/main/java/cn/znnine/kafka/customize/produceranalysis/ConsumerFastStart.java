@@ -7,6 +7,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * 客户端代码示例
@@ -19,6 +20,11 @@ public class ConsumerFastStart {
     public static final String brokerList = "192.168.238.128:9092,192.168.238.130:9092,192.168.238.131:9092";
     public static final String topic = "test";
     public static final String groupId = "test-group-x";
+    public static final AtomicBoolean isRunning = new AtomicBoolean(true);
+
+    public static Properties initConfig(){
+        
+    }
 
     public static void main(String[] args) {
         Properties properties = new Properties();
