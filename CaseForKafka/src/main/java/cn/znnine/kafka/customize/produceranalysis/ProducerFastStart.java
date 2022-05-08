@@ -1,5 +1,7 @@
 package cn.znnine.kafka.customize.produceranalysis;
 
+import cn.znnine.kafka.customize.protostuff.ProtostuffSerializer;
+import cn.znnine.kafka.customize.serializer.Company;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
 
@@ -19,9 +21,11 @@ public class ProducerFastStart {
     public static Properties initConfig(){
         Properties properties = new Properties();
 //        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
-        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+//        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 //        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
-        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+//        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ProtostuffSerializer.class.getName());
         properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, brokerList);
         properties.put(ProducerConfig.CLIENT_ID_CONFIG , "producer.client.id.demo");
         return properties;
@@ -30,9 +34,12 @@ public class ProducerFastStart {
     public static void main(String[] args) {
         Properties properties = initConfig();
         //配置生产者客户端参数并创建KafkaProducer实例
-        KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
+        KafkaProducer<String, Company> producer = new KafkaProducer<>(properties);
         //构建发送的消息
-        ProducerRecord<String, String> record = new ProducerRecord<>(topic, "hello2", "worldee2");
+        Company company = new Company();
+        company.setAddress("北京市昌平区");
+        company.setName("壹玖2号");
+        ProducerRecord<String, Company> record = new ProducerRecord<>(topic, "hello2", company);
         //发送消息
         try {
             /**
