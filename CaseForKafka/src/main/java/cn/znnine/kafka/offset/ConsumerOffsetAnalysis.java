@@ -8,6 +8,7 @@ import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.time.Duration;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -29,10 +30,10 @@ public class ConsumerOffsetAnalysis {
     public static final String groupId = "test-group-x-kk";
     public static final AtomicBoolean isRunning = new AtomicBoolean(true);
 
-    public static Properties initConfig(){
+    public static Properties initConfig() {
         Properties properties = new Properties();
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,StringDeserializer.class.getName());
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, brokerList);
         //设置消费组的名称
         properties.put(GROUP_ID_CONFIG, groupId);
@@ -49,13 +50,24 @@ public class ConsumerOffsetAnalysis {
         TopicPartition tp = new TopicPartition(topic, 2);
         consumer.assign(Lists.newArrayList(tp));
         long lastConsumedOffset = -1;
-        while (true){
+        while (true) {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
             if (records.isEmpty()) {
                 break;
             }
             List<ConsumerRecord<String, String>> partitionRecords = records.records(tp);
             lastConsumedOffset = partitionRecords.get(partitionRecords.size() - 1).offset();
+//            consumer.commitSync(Collections.singletonMap(tp, new OffsetAndMetadata(lastConsumedOffset)));
+            /**
+             * 异步提交，带回调函数
+             */
+//            consumer.commitAsync((offsets, exception) -> {
+//                if (exception != null) {
+//                    System.out.println("commit failed, exception: " + exception.getMessage());
+//                } else {
+//                    System.out.println(offsets);
+//                }
+//            });
             consumer.commitSync();//同步提交消费位移
         }
 
