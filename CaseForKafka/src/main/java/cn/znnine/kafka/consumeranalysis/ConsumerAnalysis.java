@@ -1,8 +1,7 @@
-package cn.znnine.kafka.customize.consumeranalysis;
+package cn.znnine.kafka.consumeranalysis;
 
 import com.google.common.collect.Lists;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.PartitionInfo;
@@ -10,12 +9,9 @@ import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.regex.Pattern;
 
 /**
  * 客户端代码示例
@@ -68,9 +64,12 @@ public class ConsumerAnalysis {
         // 不断循环消费消息
         while (isRunning.get()){
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
-            for (ConsumerRecord<String, String> record : records) {
-                String message = String.format("消费到消息：%s, partition: %d, offset: %d", record.value(), record.partition(), record.offset());
-                System.out.println(message);
+//            for (ConsumerRecord<String, String> record : records) {
+//                String message = String.format("消费到消息：%s, partition: %d, offset: %d", record.value(), record.partition(), record.offset());
+//                System.out.println(message);
+//            }
+            for (TopicPartition partition : records.partitions()) {
+                System.out.println("partition: " + partition.partition());
             }
         }
 

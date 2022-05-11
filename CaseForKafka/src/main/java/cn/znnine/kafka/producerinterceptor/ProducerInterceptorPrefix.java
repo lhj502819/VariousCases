@@ -1,4 +1,4 @@
-package cn.znnine.kafka.customize.producerinterceptor;
+package cn.znnine.kafka.producerinterceptor;
 
 import org.apache.kafka.clients.producer.ProducerInterceptor;
 import org.apache.kafka.clients.producer.ProducerRecord;

@@ -1,4 +1,4 @@
-package cn.znnine.kafka.customize.protostuff;
+package cn.znnine.kafka.protostuff;
 
 import cn.znnine.kafka.customize.serializer.Company;
 import io.protostuff.LinkedBuffer;

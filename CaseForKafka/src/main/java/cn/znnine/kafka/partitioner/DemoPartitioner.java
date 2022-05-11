@@ -1,4 +1,4 @@
-package cn.znnine.kafka.customize.partitioner;
+package cn.znnine.kafka.partitioner;
 
 import org.apache.kafka.clients.producer.Partitioner;
 import org.apache.kafka.common.Cluster;

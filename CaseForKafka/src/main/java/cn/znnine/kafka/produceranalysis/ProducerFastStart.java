@@ -1,6 +1,6 @@
-package cn.znnine.kafka.customize.produceranalysis;
+package cn.znnine.kafka.produceranalysis;
 
-import cn.znnine.kafka.customize.protostuff.ProtostuffSerializer;
+import cn.znnine.kafka.protostuff.ProtostuffSerializer;
 import cn.znnine.kafka.customize.serializer.Company;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -39,7 +39,7 @@ public class ProducerFastStart {
         Company company = new Company();
         company.setAddress("北京市昌平区");
         company.setName("壹玖2号");
-        ProducerRecord<String, Company> record = new ProducerRecord<>(topic, "hello2", company);
+        ProducerRecord<String, Company> record = new ProducerRecord<>(topic, 2,"hello2", company);
         //发送消息
         try {
             /**
