@@ -1,8 +1,7 @@
-package cn.znnine.kafka.pojo;
+package cn.znnine.kafka.customize.serializer;
 
 import org.apache.kafka.common.errors.SerializationException;
 import org.apache.kafka.common.serialization.Deserializer;
-import org.apache.kafka.common.serialization.Serializer;
 
 import java.nio.ByteBuffer;
 
@@ -25,7 +24,7 @@ public class CompanyDeserializer implements Deserializer<Company> {
         }
         ByteBuffer buffer = ByteBuffer.wrap(data);
         int nameLen , addressLen;
-        String name = null,address;
+        String name = null,address = null;
 
         nameLen = buffer.getInt();
         byte[] nameBytes = new byte[nameLen];
