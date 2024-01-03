@@ -41,13 +41,17 @@
             <groupId>com.google.auto.service</groupId>
             <artifactId>auto-service-annotations</artifactId>
             <version>1.0-rc7</version>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>com.google.auto.service</groupId>
             <artifactId>auto-service</artifactId>
             <version>1.0-rc4</version>
+            <optional>true</optional>
         </dependency>
+
+
 
         <dependency>
             <groupId>org.openjdk.jol</groupId>
